@@ -11,9 +11,9 @@ db:
         - "7306:3306"
     environment:
         MYSQL_ROOT_PASSWORD: "root"
-        MYSQL_DATABASE: "gymsteer"
-        MYSQL_USER: "gymsteeruser"
-        MYSQL_PASSWORD: "gymsteerpass"
+        MYSQL_DATABASE: "symfony"
+        MYSQL_USER: "symfonyuser"
+        MYSQL_PASSWORD: "symfonypass"
 php:
     image: bigsoda/symfony-php-fpm
     ports:
