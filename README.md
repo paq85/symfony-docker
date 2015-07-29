@@ -27,7 +27,7 @@ You can SSH to PHP-FPM container by running
     
 ## Usage
 
-Adjust the environment variables in `common.env` and depending if you want to use images or build them from scratch run:
+Depending if you want to use images or build them from scratch you can:
  
 1. Use prepared images. This is recommended as it's much faster:
 
