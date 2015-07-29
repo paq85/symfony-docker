@@ -9,11 +9,6 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 
 ADD start.sh /start.sh
 
-ADD 50-symfony.ini /etc/php5/fpm/conf.d/
-ADD 50-symfony.ini /etc/php5/cli/conf.d/
-
-ADD symfony.pool.conf /etc/php5/fpm/pool.d/
-
 RUN \
     apt-get update && apt-get install -y openssh-server && \
     mkdir /var/run/sshd && \
@@ -25,10 +20,6 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
-# Enable Xdebug for CLI
-RUN \
-    /bin/echo -e "\nexport XDEBUG_CONFIG=\"idekey=PHPSTORM\"" >> /etc/profiles && \
-    /bin/echo -e "\nexport PHP_IDE_CONFIG=\"serverName=symfony.local\"" >> /etc/profiles
 
 VOLUME /var/www/symfony
 
