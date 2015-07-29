@@ -1,0 +1,1 @@
+Example Symfony 2 project.

@@ -1,0 +1,33 @@
+# This is an example file
+# Adjust it for your project's needs
+application:
+    build: bigsoda/symfony-app
+    volumes:
+        - ./symfony/:/var/www/symfony
+    tty: true
+    env_file: common.env
+db:
+    image: mysql/mysql-server:5.6
+    ports:
+        - "6306:3306"
+    env_file: common.env
+php:
+    build: bigsoda/symfony-php-fpm
+    ports:
+        - "6022:22"
+    expose:
+        - 9000:9000
+    volumes_from:
+        - application
+    links:
+        - db
+    env_file: common.env
+nginx:
+    build: bigsoda/symfony-nginx
+    ports:
+        - "6080:80"
+    links:
+        - php
+    volumes_from:
+        - application
+    env_file: common.env
