@@ -3,17 +3,14 @@
 application:
     build: bigsoda/symfony-app
     volumes:
-        - symfony:/var/www/symfony
+        - ./symfony/:/var/www/symfony
     tty: true
+    env_file: common.env
 db:
     image: mysql/mysql-server:5.6
     ports:
         - "6306:3306"
-    environment:
-        MYSQL_ROOT_PASSWORD: "root"
-        MYSQL_DATABASE: "symfony"
-        MYSQL_USER: "symfonyuser"
-        MYSQL_PASSWORD: "symfonypass"
+    env_file: common.env
 php:
     build: bigsoda/symfony-php-fpm
     ports:
@@ -24,6 +21,7 @@ php:
         - application
     links:
         - db
+    env_file: common.env
 nginx:
     build: bigsoda/symfony-nginx
     ports:
@@ -32,3 +30,4 @@ nginx:
         - php
     volumes_from:
         - application
+    env_file: common.env
