@@ -21,7 +21,8 @@ php:
     expose:
         - 9000:9000
     volumes:
-        - ./symfony/docker/php/50-symfony.ini:/etc/php5/conf.d/50-symfony.ini
+        - ./symfony/docker/php/50-symfony.ini:/etc/php5/cli/conf.d/50-symfony.ini
+        - ./symfony/docker/php/50-symfony.ini:/etc/php5/fpm/conf.d/50-symfony.ini
         - ./symfony/docker/php/symfony.pool.conf:/etc/php5/fpm/pool.d/symfony.pool.conf
     volumes_from:
         - application
