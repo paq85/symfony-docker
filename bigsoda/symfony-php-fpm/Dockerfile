@@ -5,6 +5,8 @@ MAINTAINER Damian Sromek <damian.sromek@gmail.com>
 # TODO: install xdebug only if requested
 # TODO: git required by composer so install only if requested
 RUN apt-get update && apt-get install -y apt-utils curl mc htop php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-apcu php5-gd php5-imagick php5-curl php5-intl php5-xdebug git
+RUN apt-get install -y npm && \
+    npm install -g bower grunt-cli gulp && ln -s /usr/bin/nodejs /usr/bin/node
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
 ADD start.sh /start.sh

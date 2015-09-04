@@ -3,7 +3,7 @@ Docker(s) for Symfony project
 
 Creates services required to run Symfony project.
 
-- PHP (PHP-FPM)
+- PHP (PHP-FPM) + NPM (with Bower and Grunt)
 - Nginx
 - MySQL
 
