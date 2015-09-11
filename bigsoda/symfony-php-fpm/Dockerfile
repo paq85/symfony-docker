@@ -4,10 +4,12 @@ MAINTAINER Damian Sromek <damian.sromek@gmail.com>
 
 # TODO: install xdebug only if requested
 # TODO: git required by composer so install only if requested
-RUN apt-get update && apt-get install -y apt-utils curl mc htop php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-apcu php5-gd php5-imagick php5-curl php5-intl php5-xdebug git
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get update && apt-get install -y apt-utils curl wget php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
 RUN apt-get install -y npm && \
     npm install -g bower grunt-cli gulp && ln -s /usr/bin/nodejs /usr/bin/node
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+RUN wget http://www.phing.info/get/phing-latest.phar && chmod +x phing-latest.phar && mv phing-latest.phar /usr/local/bin/phing
 
 ADD start.sh /start.sh
 
