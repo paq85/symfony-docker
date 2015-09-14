@@ -49,3 +49,4 @@ You should see PHP Info output.
 - Custom (ssh) user name and password
 - Make it possible to disable Xdebug and SSH agent
 - Check the setup using Symfony's validation tool (app/check.php)
+- NodeJS etc. in separate image

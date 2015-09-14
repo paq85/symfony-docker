@@ -2,9 +2,9 @@ FROM debian:jessie
 
 MAINTAINER Damian Sromek <damian.sromek@gmail.com>
 
-# TODO: install xdebug only if requested
 # git is required by Composer and Gulp so install only if requested
-RUN apt-get update && apt-get install -y apt-utils curl wget git php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
+# make required by some NPM packages
+RUN apt-get update && apt-get install -y apt-utils curl wget git make php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs && \
     npm install -g bower grunt-cli gulp
@@ -21,6 +21,8 @@ RUN \
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+# SSH for PHPStorm fix http://stackoverflow.com/questions/28612875/phpstorm-algorithm-negotiation-fail
+RUN /bin/echo -e "\nKexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1" >> /etc/ssh/sshd_config
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
