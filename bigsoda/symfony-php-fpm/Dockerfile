@@ -4,7 +4,7 @@ MAINTAINER Damian Sromek <damian.sromek@gmail.com>
 
 # git is required by Composer and Gulp so install only if requested
 # make required by some NPM packages
-RUN apt-get update && apt-get install -y apt-utils curl wget git make php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
+RUN apt-get update && apt-get install -y apt-utils curl wget bzip2 git make php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs && \
     npm install -g bower grunt-cli gulp
