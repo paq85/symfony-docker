@@ -1,7 +1,7 @@
 # This is an example file
 # Adjust it for your project's needs
 application:
-    image: phpdev/symfony-app
+    image: paq85/symfony-app
     volumes:
         - ./symfony/:/var/www/symfony
     tty: true
@@ -15,7 +15,7 @@ db:
         MYSQL_USER: "symfonyuser"
         MYSQL_PASSWORD: "symfonypass"
 php:
-    image: phpdev/symfony-php-fpm
+    image: paq85/symfony-php
     ports:
         - "7022:22"
     expose:
@@ -29,7 +29,7 @@ php:
     links:
         - db
 nginx:
-    image: phpdev/symfony-nginx
+    image: paq85/symfony-nginx
     ports:
         - "7080:80"
     links:
