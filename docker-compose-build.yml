@@ -1,7 +1,7 @@
 # This is an example file
 # Adjust it for your project's needs
 application:
-    build: bigsoda/symfony-app
+    build: phpdev/symfony-app
     volumes:
         - ./symfony/:/var/www/symfony
     tty: true
@@ -15,7 +15,7 @@ db:
         MYSQL_USER: "symfonyuser"
         MYSQL_PASSWORD: "symfonypass"
 php:
-    build: bigsoda/symfony-php-fpm
+    build: phpdev/symfony-php-fpm
     ports:
         - "7022:22"
     expose:
@@ -29,7 +29,7 @@ php:
     links:
         - db
 nginx:
-    build: bigsoda/symfony-nginx
+    build: phpdev/symfony-nginx
     ports:
         - "7080:80"
     links:

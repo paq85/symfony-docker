@@ -3,23 +3,19 @@ Docker(s) for Symfony project
 
 Creates services required to run Symfony project.
 
-- PHP (PHP-FPM) + NPM (with Bower and Grunt)
+- PHP (PHP-FPM) +
 - Nginx
 - MySQL
 
-This can be used to develop Symfony based project on Ubuntu (14.04) using Docker.
+This can be used to develop Symfony based project eg. on Ubuntu (14.04, 15.04) using Docker.
 
 INFO:
-SSH username and password is "bigsoda".
+SSH username and password is "phpdev".
 
 You can SSH to PHP-FPM container by running
     
-    ssh bigsoda@localhost:6022
+    ssh phpdev@localhost:6022
 
-**CAUTION:** 
-
-    Images build by this project are NOT production ready yet.
-    
 **NOTICE:** 
 
     By default this project includes development tools as Xdebug and SSH access for remote test running 
@@ -43,10 +39,25 @@ Add `symfony.local` to your /etc/hosts and project should be available at
     
 You should see PHP Info output.
 
-## TODOs 
+### PHPStorm integration
 
-- Remove root's SSH access
-- Custom (ssh) user name and password
-- Make it possible to disable Xdebug and SSH agent
-- Check the setup using Symfony's validation tool (app/check.php)
-- NodeJS etc. in separate image
+It's possible to use PHPStorm's Remote PHP Interpreter for an efficient work.
+
+You need to setup:
+
+- PHP -> PHP Remote Interpreter (PHP 5.6) via SSH credentials
+- PHP -> Behat via Remote Interpreter
+- PHP -> PHPUnit via Remote Interpreter
+- PHP -> Servers
+- Deployment via SFTP with proper Path Mappings
+
+This will allow you run your project and tests - also with debugger.
+
+**NOTE**
+If you have troubles with Xdebug try adding "magic" environment variables like
+`PHP_IDE_CONFIG="serverName=gymsteer.local"
+ XDEBUG_CONFIG="idekey=phpstorm"`
+
+ You will know path mappings are OK once you run PHPUnit from PHPStorm and click twice on concrete test
+ it should open given test source code.
+
