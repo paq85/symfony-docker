@@ -55,9 +55,17 @@ This will allow you run your project and tests - also with debugger.
 
 **NOTE**
 If you have troubles with Xdebug try adding "magic" environment variables like
-`PHP_IDE_CONFIG="serverName=gymsteer.local"
+`PHP_IDE_CONFIG="serverName=docker.local"
  XDEBUG_CONFIG="idekey=phpstorm"`
 
  You will know path mappings are OK once you run PHPUnit from PHPStorm and click twice on concrete test
  it should open given test source code.
 
+## Building Single Image
+
+Go to one of folders in `phpdev`, eg. `phpdev/symfony-app`
+
+    docker build
+    docker images
+    docker tag {imageId} paq85/symfony-app:latest
+    docker push paq85/symfony-app

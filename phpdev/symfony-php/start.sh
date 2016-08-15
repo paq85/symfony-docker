@@ -9,6 +9,8 @@ if [ -d /var/www/symfony/app/logs ]; then
     chmod 777 -R /var/www/symfony/app/logs
 fi
 
+# Update composer
+composer self-update
 # Run SSH daemon
 /usr/sbin/sshd
 # Run PHP Service
