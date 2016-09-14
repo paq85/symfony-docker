@@ -14,4 +14,4 @@ composer self-update
 # Run SSH daemon
 /usr/sbin/sshd
 # Run PHP Service
-php5-fpm -F
+php-fpm7.0 -F -R

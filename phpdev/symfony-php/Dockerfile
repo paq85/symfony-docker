@@ -1,9 +1,9 @@
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER Damian Sromek <damian.sromek@gmail.com>
 
 # git is required by Composer
-RUN apt-get update && apt-get install -y apt-utils curl wget bzip2 git make php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-sqlite php5-pgsql php5-mongo php5-redis php5-apcu php5-memcached php5-gd php5-imagick php5-curl php5-intl php5-xsl php5-gmp php5-xdebug
+RUN apt-get update && apt-get install -y apt-utils curl wget bzip2 git make php7.0-common php7.0-cli php7.0-fpm php7.0-mcrypt php7.0-mysql php7.0-sqlite php7.0-pgsql php7.0-mongo php7.0-redis php7.0-apcu php7.0-memcached php7.0-gd php7.0-imagick php7.0-curl php7.0-intl php7.0-xsl php7.0-gmp php7.0-xdebug
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN wget http://www.phing.info/get/phing-latest.phar && chmod +x phing-latest.phar && mv phing-latest.phar /usr/local/bin/phing
 RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
@@ -35,5 +35,8 @@ RUN \
     groupadd docker && \
     usermod -a -G docker phpdev && \
     /bin/echo -e "phpdev\nphpdev" | passwd phpdev
+
+# Fix for "ERROR: unable to bind listening socket for address '/run/php/php7.0-fpm.sock': No such file or directory "
+RUN service php7.0-fpm start
 
 CMD ["/bin/bash", "/start.sh"]
